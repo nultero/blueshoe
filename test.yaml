@@ -1,0 +1,31 @@
+---
+leafs:
+  hosts:
+    leaf01:
+      ansible_host: 192.168.0.246
+    leaf02:
+      ansible_host: 192.168.0.246
+
+spines:
+  hosts:
+    spine01:
+      ansible_host: 192.168.0.246
+    spine02:
+      ansible_host: 192.168.0.246
+
+network:
+  children:
+    leafs:
+    spines:
+
+webservers:
+  hosts:
+    webserver01:
+      ansible_host: 192.168.0.246
+    webserver02:
+      ansible_host: 192.168.0.246
+
+datacenter:
+  children:
+    network:
+    webservers:

@@ -1,0 +1,21 @@
+---
+# - hosts:
+- hosts: all
+  remote_user: siede
+
+  vars:
+    somelist:
+      - 1
+      - 2
+      - 6
+      - 9
+      - 100
+
+  tasks:
+    - name: Run with items greater than 5
+      # ansible.builtin.command: curl localhost:8000/{{ item }}
+      # ansible.builtin.command: echo {{ item }} > testansible{{ item  }}.txt
+      shell: date > testansible{{ item  }}.txt
+      register: log
+      with_items: "{{somelist}}"
+      when: item != 6

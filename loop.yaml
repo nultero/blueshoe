@@ -1,0 +1,20 @@
+- hosts: localhost
+  vars:
+      somelist:
+        - 1
+        - 2
+        - 6
+        - 9
+        - 100
+
+        # lookup()|default()|bool
+
+  tasks:
+    - name: Run with items greater than 5
+      ansible.builtin.command: curl localhost:8000/{{ item }}
+    # - ansible.builtin.command: curl localhost:8000/{{ item }}
+      # loop: [ 0, 2, 4, 6, 8, 10, 100 ]
+      with_items: somelist
+      loop: 
+        - "{{ somelist }}"
+      when: item > 5
